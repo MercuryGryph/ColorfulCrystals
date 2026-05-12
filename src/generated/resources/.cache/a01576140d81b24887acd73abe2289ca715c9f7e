@@ -1,0 +1,9 @@
+// 26.1.2	2026-05-12T22:09:11.8541221	Registrum Provider for colorful_crystals [Registries, Data Maps, , Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (damage_types), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Model Definitions - colorful_crystals, Lang (en_us/en_ud), generic_client_provider]
+ab585a260d5eb5d42ce71af3fad3e353c95fd19c assets/colorful_crystals/blockstates/ruby_cluster.json
+103083a461239c1d0a74533cd682ebb91ac74678 assets/colorful_crystals/blockstates/topaz_cluster.json
+a88dbe81bdc5b0495207c9ac304fc4180fc99584 assets/colorful_crystals/items/ruby_cluster.json
+ae09cc93c6b360b676dddd9918ce9df942c2d144 assets/colorful_crystals/items/topaz_cluster.json
+a5bd602dad9e8bfe34ce859ed7fa66bff0e5bd1a assets/colorful_crystals/lang/en_ud.json
+c301f9d1d629dc538ea29c98f9dd170bfb9d96a4 assets/colorful_crystals/lang/en_us.json
+ce68b9862977440f676d1514d8204d4486347a40 data/colorful_crystals/loot_table/blocks/ruby_cluster.json
+a9a4ea205f75151ae0fbe36d72148fb6c8230a2e data/colorful_crystals/loot_table/blocks/topaz_cluster.json
