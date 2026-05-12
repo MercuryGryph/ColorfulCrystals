@@ -1,4 +1,4 @@
-![icon.png](main/resources/icon.png)
+![icon.png](src/main/resources/icon.png)
 
 # Colorful Crystals
 
