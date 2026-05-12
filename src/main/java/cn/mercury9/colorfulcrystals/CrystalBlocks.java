@@ -2,8 +2,11 @@ package cn.mercury9.colorfulcrystals;
 
 import cn.mercury9.colorfulcrystals.block.CrystalBudBlock;
 import com.mojang.math.Quadrant;
+import dev.anvilcraft.lib.v2.registrum.providers.DataGenContext;
+import dev.anvilcraft.lib.v2.registrum.providers.generators.RegistrumBlockModelGenerator;
 import dev.anvilcraft.lib.v2.registrum.util.entry.BlockEntry;
-import net.minecraft.client.data.models.BlockModelGenerators;
+import dev.anvilcraft.lib.v2.util.nullness.NonNullBiConsumer;
+import dev.anvilcraft.lib.v2.util.nullness.NonNullSupplier;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
@@ -16,6 +19,7 @@ import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.jspecify.annotations.NonNull;
 
 public class CrystalBlocks {
     static {
@@ -28,11 +32,15 @@ public class CrystalBlocks {
         .object("topaz_cluster")
         .block(CrystalBudBlock.constructWith(8f, 8f))
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
-        .blockstate(() -> (ctx, gen) -> gen
-            .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
-                .with(propertyDispatchWithFacingAndRandomRotation(identifier("topaz_cluster")))
-            )
-        )
+        .blockstate(new NonNullSupplier<>() {
+            @Override
+            public @NonNull NonNullBiConsumer<DataGenContext<Block, CrystalBudBlock>, RegistrumBlockModelGenerator> get() {
+                return (ctx, gen) -> gen
+                    .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
+                        .with(propertyDispatchWithFacingAndRandomRotation(identifier("topaz_cluster")))
+                    );
+            }
+        })
         .lang("Topaz Cluster")
         .item()
         .build()
@@ -43,11 +51,15 @@ public class CrystalBlocks {
         .block(CrystalBudBlock.constructWith(8f, 8f))
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
         .lang("Ruby Cluster")
-        .blockstate(() -> (ctx, gen) -> gen
-            .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
-                .with(propertyDispatchWithFacingAndRandomRotation(identifier("ruby_cluster")))
-            )
-        )
+        .blockstate(new NonNullSupplier<>() {
+            @Override
+            public @NonNull NonNullBiConsumer<DataGenContext<Block, CrystalBudBlock>, RegistrumBlockModelGenerator> get() {
+                return (ctx, gen) -> gen
+                    .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
+                        .with(propertyDispatchWithFacingAndRandomRotation(identifier("ruby_cluster")))
+                    );
+            }
+        })
         .item()
         .build()
         .register();
