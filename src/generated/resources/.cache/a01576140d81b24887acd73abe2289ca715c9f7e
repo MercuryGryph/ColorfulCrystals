@@ -1,9 +1,15 @@
-// 26.1.2	2026-05-12T22:09:11.8541221	Registrum Provider for colorful_crystals [Registries, Data Maps, , Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (damage_types), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Model Definitions - colorful_crystals, Lang (en_us/en_ud), generic_client_provider]
+// 26.1.2	2026-05-13T19:37:32.0762229	Registrum Provider for colorful_crystals [Registries, Data Maps, , Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (damage_types), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Model Definitions - colorful_crystals, Lang (en_us/en_ud), generic_client_provider]
 ab585a260d5eb5d42ce71af3fad3e353c95fd19c assets/colorful_crystals/blockstates/ruby_cluster.json
 103083a461239c1d0a74533cd682ebb91ac74678 assets/colorful_crystals/blockstates/topaz_cluster.json
 a88dbe81bdc5b0495207c9ac304fc4180fc99584 assets/colorful_crystals/items/ruby_cluster.json
 ae09cc93c6b360b676dddd9918ce9df942c2d144 assets/colorful_crystals/items/topaz_cluster.json
-a5bd602dad9e8bfe34ce859ed7fa66bff0e5bd1a assets/colorful_crystals/lang/en_ud.json
-c301f9d1d629dc538ea29c98f9dd170bfb9d96a4 assets/colorful_crystals/lang/en_us.json
+ec53d6e679ceb387b5bf98640e13cfc4770d243c assets/colorful_crystals/lang/en_ud.json
+8b926615561a201f92e2d88598ed281d9d1fe98b assets/colorful_crystals/lang/en_us.json
 ce68b9862977440f676d1514d8204d4486347a40 data/colorful_crystals/loot_table/blocks/ruby_cluster.json
 a9a4ea205f75151ae0fbe36d72148fb6c8230a2e data/colorful_crystals/loot_table/blocks/topaz_cluster.json
+157a0ec13f1fcd82e2bff55c3e89ece4d2e5d913 data/c/tags/block/clusters.json
+33cb997e7336162bfe927d5345c38987600e0cf8 data/c/tags/block/clusters/ruby.json
+58b4dd4f703a4fda5421bde032f2390d54f5ed03 data/c/tags/block/clusters/topaz.json
+157a0ec13f1fcd82e2bff55c3e89ece4d2e5d913 data/c/tags/item/clusters.json
+33cb997e7336162bfe927d5345c38987600e0cf8 data/c/tags/item/clusters/ruby.json
+58b4dd4f703a4fda5421bde032f2390d54f5ed03 data/c/tags/item/clusters/topaz.json

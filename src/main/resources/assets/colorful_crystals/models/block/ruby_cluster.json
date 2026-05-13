@@ -4,7 +4,7 @@
 	"parent": "block/block",
 	"textures": {
 		"1": "colorful_crystals:block/ruby_cluster",
-		"particle": "#1"
+		"particle": "colorful_crystals:block/ruby_cluster"
 	},
 	"elements": [
 		{
@@ -178,7 +178,7 @@
 		},
 		"gui": {
 			"rotation": [30, -135, 0],
-			"scale": [0.625, 0.625, 0.625]
+			"translation": [0, 3.5, 0]
 		},
 		"head": {
 			"translation": [0, 13, 0]

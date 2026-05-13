@@ -1,4 +1,7 @@
 {
   "block.colorful_crystals.ruby_cluster": "Ruby Cluster",
-  "block.colorful_crystals.topaz_cluster": "Topaz Cluster"
+  "block.colorful_crystals.topaz_cluster": "Topaz Cluster",
+  "item.colorful_crystals.ruby_cluster": "Ruby Cluster",
+  "item.colorful_crystals.topaz_cluster": "Topaz Cluster",
+  "itemGroup.colorful_crystals.tab": "Colorful Crystals"
 }

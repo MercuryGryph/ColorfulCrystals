@@ -20,6 +20,7 @@ public class ColorfulCrystals {
 
     private void setupRegistration(IEventBus modEventBus) {
         CrystalBlocks.setupRegistration();
+        CrystalCreativeTabs.DR.register(modEventBus);
     }
 
     public static Identifier identifier(String path) {

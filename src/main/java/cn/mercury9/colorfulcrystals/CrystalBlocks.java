@@ -23,7 +23,7 @@ import org.jspecify.annotations.NonNull;
 
 public class CrystalBlocks {
     static {
-        ColorfulCrystals.REGISTRUM.defaultCreativeTab(CrystalCreativeTabs.TAB, "colorful_crystals");
+        ColorfulCrystals.REGISTRUM.defaultCreativeTab(CrystalCreativeTabs.TAB.getKey());
     }
 
     public static void setupRegistration() {}
@@ -36,6 +36,7 @@ public class CrystalBlocks {
         .lang("Topaz Cluster")
         .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.TOPAZ_CLUSTER)
         .item()
+        .lang("Topaz Cluster")
         .tag(CrystalTags.Items.CLUSTERS, CrystalTags.Items.TOPAZ_CLUSTER)
         .build()
         .register();
@@ -48,6 +49,7 @@ public class CrystalBlocks {
         .lang("Ruby Cluster")
         .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.RUBY_CLUSTER)
         .item()
+        .lang("Ruby Cluster")
         .tag(CrystalTags.Items.CLUSTERS, CrystalTags.Items.RUBY_CLUSTER)
         .build()
         .register();
