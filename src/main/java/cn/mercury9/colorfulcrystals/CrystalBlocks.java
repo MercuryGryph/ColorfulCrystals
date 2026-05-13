@@ -32,35 +32,23 @@ public class CrystalBlocks {
         .object("topaz_cluster")
         .block(CrystalBudBlock.constructWith(8f, 8f))
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
-        .blockstate(new NonNullSupplier<>() {
-            @Override
-            public @NonNull NonNullBiConsumer<DataGenContext<Block, CrystalBudBlock>, RegistrumBlockModelGenerator> get() {
-                return (ctx, gen) -> gen
-                    .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
-                        .with(propertyDispatchWithFacingAndRandomRotation(identifier("topaz_cluster")))
-                    );
-            }
-        })
+        .blockstate(clusterBlockState(identifier("topaz_cluster")))
         .lang("Topaz Cluster")
+        .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.TOPAZ_CLUSTER)
         .item()
+        .tag(CrystalTags.Items.CLUSTERS, CrystalTags.Items.TOPAZ_CLUSTER)
         .build()
         .register();
 
     public static final BlockEntry<CrystalBudBlock> RUBY_CLUSTER = ColorfulCrystals.REGISTRUM
         .object("ruby_cluster")
-        .block(CrystalBudBlock.constructWith(8f, 8f))
+        .block(CrystalBudBlock.constructWith(6f, 8f))
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
+        .blockstate(clusterBlockState(identifier("ruby_cluster")))
         .lang("Ruby Cluster")
-        .blockstate(new NonNullSupplier<>() {
-            @Override
-            public @NonNull NonNullBiConsumer<DataGenContext<Block, CrystalBudBlock>, RegistrumBlockModelGenerator> get() {
-                return (ctx, gen) -> gen
-                    .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
-                        .with(propertyDispatchWithFacingAndRandomRotation(identifier("ruby_cluster")))
-                    );
-            }
-        })
+        .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.RUBY_CLUSTER)
         .item()
+        .tag(CrystalTags.Items.CLUSTERS, CrystalTags.Items.RUBY_CLUSTER)
         .build()
         .register();
 
@@ -92,4 +80,19 @@ public class CrystalBlocks {
             .select(Direction.WEST  , randomRotationMultiVariant(model, VariantMutator.Y_ROT).with(VariantMutator.Z_ROT.withValue(Quadrant.R270)));
     }
 
+    public static <T extends Block>
+    NonNullSupplier<NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator>>
+    clusterBlockState(
+        Identifier baseModel
+    ) {
+        return new NonNullSupplier<>() {
+            @Override
+            public @NonNull NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator> get() {
+                return (ctx, gen) -> gen
+                    .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
+                        .with(propertyDispatchWithFacingAndRandomRotation(baseModel))
+                    );
+            }
+        };
+    }
 }
