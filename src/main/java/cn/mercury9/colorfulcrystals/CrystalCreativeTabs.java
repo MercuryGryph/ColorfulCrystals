@@ -6,7 +6,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class CrystalCreativeTabs {
-    public static final DeferredRegister<CreativeModeTab> DR = DeferredRegister.create(
+    protected static final DeferredRegister<CreativeModeTab> DR = DeferredRegister.create(
         Registries.CREATIVE_MODE_TAB,
         ColorfulCrystals.MOD_ID
     );

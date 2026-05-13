@@ -27,7 +27,7 @@ public class CrystalBlocks {
         ColorfulCrystals.REGISTRUM.defaultCreativeTab(CrystalCreativeTabs.TAB.getKey());
     }
 
-    public static void setupRegistration() {}
+    protected static void setupRegistration() {}
 
     public static final BlockEntry<CrystalBudBlock> TOPAZ_CLUSTER = ColorfulCrystals.REGISTRUM
         .object("topaz_cluster")
@@ -35,6 +35,10 @@ public class CrystalBlocks {
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
         .blockstate(clusterBlockState(identifier("topaz_cluster")))
         .lang("Topaz Cluster")
+        .loot((tables, block) -> {
+            tables.dropSelf(block);
+            tables.createOreDrop(block, CrystalItems.TOPAZ_RAW.asItem());
+        })
         .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.TOPAZ_CLUSTER)
         .item()
         .lang("Topaz Cluster")
@@ -48,6 +52,10 @@ public class CrystalBlocks {
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
         .blockstate(clusterBlockState(identifier("ruby_cluster")))
         .lang("Ruby Cluster")
+        .loot((tables, block) -> {
+            tables.dropSelf(block);
+            tables.createOreDrop(block, CrystalItems.RUBY_RAW.asItem());
+        })
         .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.RUBY_CLUSTER)
         .item()
         .lang("Ruby Cluster")
