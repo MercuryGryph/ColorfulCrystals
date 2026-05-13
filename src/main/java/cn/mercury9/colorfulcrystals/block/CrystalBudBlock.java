@@ -9,7 +9,7 @@ public class CrystalBudBlock extends AmethystClusterBlock {
         super(height, width, props);
     }
 
-    public static NonNullFunction<Properties, CrystalBudBlock> constructWith(
+    public static NonNullFunction<Properties, CrystalBudBlock> of(
         float height,
         float width
     ) {

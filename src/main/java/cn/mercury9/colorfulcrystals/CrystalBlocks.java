@@ -31,7 +31,7 @@ public class CrystalBlocks {
 
     public static final BlockEntry<CrystalBudBlock> TOPAZ_CLUSTER = ColorfulCrystals.REGISTRUM
         .object("topaz_cluster")
-        .block(CrystalBudBlock.constructWith(8f, 8f))
+        .block(CrystalBudBlock.of(8f, 8f))
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
         .blockstate(clusterBlockState(identifier("topaz_cluster")))
         .lang("Topaz Cluster")
@@ -44,7 +44,7 @@ public class CrystalBlocks {
 
     public static final BlockEntry<CrystalBudBlock> RUBY_CLUSTER = ColorfulCrystals.REGISTRUM
         .object("ruby_cluster")
-        .block(CrystalBudBlock.constructWith(6f, 8f))
+        .block(CrystalBudBlock.of(6f, 8f))
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
         .blockstate(clusterBlockState(identifier("ruby_cluster")))
         .lang("Ruby Cluster")
@@ -57,7 +57,7 @@ public class CrystalBlocks {
 
     public static final BlockEntry<CrystalBudBlock> SAPPHIRE_CLUSTER = ColorfulCrystals.REGISTRUM
         .object("sapphire_cluster")
-        .block(CrystalBudBlock.constructWith(6f, 8f))
+        .block(CrystalBudBlock.of(6f, 8f))
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
         .blockstate(clusterBlockState(identifier("sapphire_cluster")))
         .lang("Sapphire Cluster")
