@@ -6,6 +6,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
+@SuppressWarnings("unused")
 public class CrystalTags {
 
 
@@ -20,6 +21,9 @@ public class CrystalTags {
 
         public static final TagKey<Block> RUBY_BLOCK = storage("ruby");
         public static final TagKey<Block> RUBY_CLUSTER = cluster("ruby");
+
+        public static final TagKey<Block> SAPPHIRE_BLOCK = storage("sapphire");
+        public static final TagKey<Block> SAPPHIRE_CLUSTER = cluster("sapphire");
 
         //region utils
         public static TagKey<Block> c(String id) {
@@ -69,6 +73,10 @@ public class CrystalTags {
         public static final TagKey<Item> RUBY = gem("ruby");
         public static final TagKey<Item> RUBY_BLOCK = storage("ruby");
         public static final TagKey<Item> RUBY_CLUSTER = cluster("ruby");
+
+        public static final TagKey<Item> SAPPHIRE = gem("sapphire");
+        public static final TagKey<Item> SAPPHIRE_BLOCK = storage("sapphire");
+        public static final TagKey<Item> SAPPHIRE_CLUSTER = cluster("sapphire");
 
         //region utils
         public static TagKey<Item> c(String id) {

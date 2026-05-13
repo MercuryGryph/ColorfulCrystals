@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jspecify.annotations.NonNull;
 
+@SuppressWarnings("unused")
 public class CrystalBlocks {
     static {
         ColorfulCrystals.REGISTRUM.defaultCreativeTab(CrystalCreativeTabs.TAB.getKey());
@@ -54,6 +55,19 @@ public class CrystalBlocks {
         .build()
         .register();
 
+    public static final BlockEntry<CrystalBudBlock> SAPPHIRE_CLUSTER = ColorfulCrystals.REGISTRUM
+        .object("sapphire_cluster")
+        .block(CrystalBudBlock.constructWith(6f, 8f))
+        .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
+        .blockstate(clusterBlockState(identifier("sapphire_cluster")))
+        .lang("Sapphire Cluster")
+        .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.RUBY_CLUSTER)
+        .item()
+        .lang("Sapphire Cluster")
+        .tag(CrystalTags.Items.CLUSTERS, CrystalTags.Items.RUBY_CLUSTER)
+        .build()
+        .register();
+
     public static Identifier identifier(String id) {
         return ColorfulCrystals.identifier("block/" + id);
     }
@@ -74,7 +88,7 @@ public class CrystalBlocks {
 
     public static PropertyDispatch<MultiVariant> propertyDispatchWithFacingAndRandomRotation(Identifier model) {
         return PropertyDispatch.initial(BlockStateProperties.FACING)
-            .select(Direction.UP    , randomRotationMultiVariant(model, VariantMutator.Y_ROT))
+            .select(Direction.UP    , randomRotationMultiVariant(model, VariantMutator.Y_ROT).with(VariantMutator.X_ROT.withValue(Quadrant.R0  )))
             .select(Direction.DOWN  , randomRotationMultiVariant(model, VariantMutator.Y_ROT).with(VariantMutator.X_ROT.withValue(Quadrant.R180)))
             .select(Direction.NORTH , randomRotationMultiVariant(model, VariantMutator.Z_ROT).with(VariantMutator.X_ROT.withValue(Quadrant.R90 )))
             .select(Direction.SOUTH , randomRotationMultiVariant(model, VariantMutator.Z_ROT).with(VariantMutator.X_ROT.withValue(Quadrant.R270)))
