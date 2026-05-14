@@ -13,6 +13,7 @@ import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.renderer.block.dispatch.Variant;
 import net.minecraft.client.renderer.block.dispatch.VariantMutator;
 import net.minecraft.core.Direction;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.random.Weighted;
 import net.minecraft.util.random.WeightedList;
@@ -68,6 +69,10 @@ public class CrystalBlocks {
         .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
         .blockstate(clusterBlockState(identifier("sapphire_cluster")))
         .lang("Sapphire Cluster")
+        .loot((tables, block) -> {
+            tables.dropSelf(block);
+            tables.createOreDrop(block, CrystalItems.SAPPHIRE_RAW.asItem());
+        })
         .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.RUBY_CLUSTER)
         .item()
         .lang("Sapphire Cluster")
@@ -75,6 +80,115 @@ public class CrystalBlocks {
         .build()
         .register();
 
+    public static final BlockEntry<Block> RAW_TOPAZ_BLOCK = ColorfulCrystals.REGISTRUM
+        .object("raw_topaz_block")
+        .block(Block::new)
+        .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+        .defaultBlockstate()
+        .lang("Raw Topaz Block")
+        .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.TOPAZ_BLOCK)
+        .item()
+        .lang("Raw Topaz Block")
+        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.TOPAZ_BLOCK)
+        .recipe((ctx, prov) -> prov.storage(
+            () -> CrystalItems.TOPAZ_RAW,
+            RecipeCategory.BUILDING_BLOCKS,
+            ctx::get
+        ))
+        .build()
+        .register();
+
+    public static final BlockEntry<Block> POLISHED_TOPAZ_BLOCK = ColorfulCrystals.REGISTRUM
+        .object("polished_topaz_block")
+        .block(Block::new)
+        .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+        .defaultBlockstate()
+        .lang("Polished Topaz Block")
+        .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.TOPAZ_BLOCK)
+        .item()
+        .lang("Polished Topaz Block")
+        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.TOPAZ_BLOCK)
+        .recipe((ctx, prov) -> prov.storage(
+            () -> CrystalItems.TOPAZ_POLISHED,
+            RecipeCategory.BUILDING_BLOCKS,
+            ctx::get
+        ))
+        .build()
+        .register();
+
+    public static final BlockEntry<Block> RAW_RUBY_BLOCK = ColorfulCrystals.REGISTRUM
+        .object("raw_ruby_block")
+        .block(Block::new)
+        .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+        .defaultBlockstate()
+        .lang("Raw Ruby Block")
+        .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.RUBY_BLOCK)
+        .item()
+        .lang("Raw Ruby Block")
+        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.RUBY_BLOCK)
+        .recipe((ctx, prov) -> prov.storage(
+            () -> CrystalItems.RUBY_RAW,
+            RecipeCategory.BUILDING_BLOCKS,
+            ctx::get
+        ))
+        .build()
+        .register();
+
+    public static final BlockEntry<Block> POLISHED_RUBY_BLOCK = ColorfulCrystals.REGISTRUM
+        .object("polished_ruby_block")
+        .block(Block::new)
+        .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+        .defaultBlockstate()
+        .lang("Polished Ruby Block")
+        .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.RUBY_BLOCK)
+        .item()
+        .lang("Polished Ruby Block")
+        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.RUBY)
+        .recipe((ctx, prov) -> prov.storage(
+            () -> CrystalItems.RUBY_POLISHED,
+            RecipeCategory.BUILDING_BLOCKS,
+            ctx::get
+        ))
+        .build()
+        .register();
+
+    public static final BlockEntry<Block> RAW_SAPPHIRE_BLOCK = ColorfulCrystals.REGISTRUM
+        .object("raw_sapphire_block")
+        .block(Block::new)
+        .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+        .defaultBlockstate()
+        .lang("Raw Sapphire Block")
+        .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.SAPPHIRE_BLOCK)
+        .item()
+        .lang("Raw Sapphire Block")
+        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.SAPPHIRE_BLOCK)
+        .recipe((ctx, prov) -> prov.storage(
+            () -> CrystalItems.SAPPHIRE_RAW,
+            RecipeCategory.BUILDING_BLOCKS,
+            ctx::get
+        ))
+        .build()
+        .register();
+
+    public static final BlockEntry<Block> POLISHED_SAPPHIRE_BLOCK = ColorfulCrystals.REGISTRUM
+        .object("polished_sapphire_block")
+        .block(Block::new)
+        .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+        .defaultBlockstate()
+        .lang("Polished Sapphire Block")
+        .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.RUBY_BLOCK)
+        .item()
+        .lang("Polished Sapphire Block")
+        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.RUBY)
+        .recipe((ctx, prov) -> prov.storage(
+            () -> CrystalItems.SAPPHIRE_POLISHED,
+            RecipeCategory.BUILDING_BLOCKS,
+            ctx::get
+        ))
+        .build()
+        .register();
+
+    //region utils
     public static Identifier identifier(String id) {
         return ColorfulCrystals.identifier("block/" + id);
     }
@@ -119,4 +233,5 @@ public class CrystalBlocks {
             }
         };
     }
+    //endregion
 }

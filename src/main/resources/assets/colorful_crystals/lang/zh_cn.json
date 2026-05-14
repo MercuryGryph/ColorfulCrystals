@@ -1,9 +1,36 @@
 {
   "itemGroup.colorful_crystals.tab": "多彩水晶",
+
   "block.colorful_crystals.topaz_cluster": "黄玉晶簇",
   "item.colorful_crystals.topaz_cluster": "黄玉晶簇",
+
+  "item.colorful_crystals.raw_topaz": "粗黄玉",
+  "block.colorful_crystals.raw_topaz_block": "粗黄玉块",
+  "item.colorful_crystals.raw_topaz_block": "粗黄玉块",
+
+  "item.colorful_crystals.polished_topaz": "抛光黄玉",
+  "block.colorful_crystals.polished_topaz_block": "抛光黄玉块",
+  "item.colorful_crystals.polished_topaz_block": "抛光黄玉块",
+
   "block.colorful_crystals.ruby_cluster": "红宝石晶簇",
   "item.colorful_crystals.ruby_cluster": "红宝石晶簇",
+
+  "item.colorful_crystals.raw_ruby": "粗红宝石",
+  "block.colorful_crystals.raw_ruby_block": "粗红宝石块",
+  "item.colorful_crystals.raw_ruby_block": "粗红宝石块",
+
+  "item.colorful_crystals.polished_ruby": "抛光红宝石",
+  "block.colorful_crystals.polished_ruby_block": "抛光红宝石块",
+  "item.colorful_crystals.polished_ruby_block": "抛光红宝石块",
+
   "block.colorful_crystals.sapphire_cluster": "蓝宝石晶簇",
-  "item.colorful_crystals.sapphire_cluster": "蓝宝石晶簇"
+  "item.colorful_crystals.sapphire_cluster": "蓝宝石晶簇",
+
+  "item.colorful_crystals.raw_sapphire": "粗蓝宝石",
+  "block.colorful_crystals.raw_sapphire_block": "粗蓝宝石块",
+  "item.colorful_crystals.raw_sapphire_block": "粗蓝宝石块",
+
+  "item.colorful_crystals.polished_sapphire": "抛光蓝宝石",
+  "block.colorful_crystals.polished_sapphire_block": "抛光蓝宝石块",
+  "item.colorful_crystals.polished_sapphire_block": "抛光蓝宝石块"
 }

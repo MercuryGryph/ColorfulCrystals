@@ -1,7 +1,7 @@
 package cn.mercury9.colorfulcrystals.item;
 
-import dev.anvilcraft.lib.v2.registrum.util.entry.ItemEntry;
 import dev.anvilcraft.lib.v2.util.nullness.NonNullFunction;
+import dev.anvilcraft.lib.v2.util.nullness.NonNullSupplier;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,14 +23,14 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class RawGemItem extends Item {
-    private final ItemEntry<Item> polished;
+    private final NonNullSupplier<Item> polished;
 
-    public RawGemItem(ItemEntry<Item> polished, Properties properties) {
+    public RawGemItem(NonNullSupplier<Item> polished, Properties properties) {
         super(properties);
         this.polished = polished;
     }
 
-    public static NonNullFunction<Properties, RawGemItem> factory(ItemEntry<Item> polished) {
+    public static NonNullFunction<Properties, RawGemItem> factory(NonNullSupplier<Item> polished) {
         return (properties) -> new RawGemItem(polished, properties);
     }
 
@@ -76,7 +76,7 @@ public class RawGemItem extends Item {
                     }
                 } else {
                     itemStack.shrink(1);
-                    player.addItem(polished.asItem().getDefaultInstance());
+                    player.addItem(polished.get().getDefaultInstance());
                 }
             } else {
                 livingEntity.releaseUsingItem();
@@ -93,7 +93,7 @@ public class RawGemItem extends Item {
     ) {
         final var scale = 3.0;
         final var number = level.getRandom().nextInt(7, 12);
-        final var particle = new ItemParticleOption(ParticleTypes.ITEM, polished.asItem());
+        final var particle = new ItemParticleOption(ParticleTypes.ITEM, polished.get());
         final var hitDirection = hit.getDirection();
         final var delta = DustDelta.fromDirection(viewVec, hitDirection);
         final var hitLoc = hit.getLocation();

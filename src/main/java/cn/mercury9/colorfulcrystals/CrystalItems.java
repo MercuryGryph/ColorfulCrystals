@@ -39,12 +39,29 @@ public class CrystalItems {
         .tag(CrystalTags.Items.GEMS, CrystalTags.Items.TOPAZ)
         .register();
 
-    public static final ItemEntry<Item> TOPAZ_RAW = ColorfulCrystals.REGISTRUM
+    public static final ItemEntry<RawGemItem> TOPAZ_RAW = ColorfulCrystals.REGISTRUM
         .object("raw_topaz")
-        .item(Item::new)
+        .item(RawGemItem.factory(TOPAZ_POLISHED))
         .lang("Raw Topaz")
         .defaultModel()
         .tag(CrystalTags.Items.GEMS, CrystalTags.Items.TOPAZ)
+        .register();
+
+
+    public static final ItemEntry<Item> SAPPHIRE_POLISHED = ColorfulCrystals.REGISTRUM
+        .object("polished_sapphire")
+        .item(Item::new)
+        .lang("Polished Sapphire")
+        .defaultModel()
+        .tag(CrystalTags.Items.GEMS, CrystalTags.Items.SAPPHIRE)
+        .register();
+
+    public static final ItemEntry<RawGemItem> SAPPHIRE_RAW = ColorfulCrystals.REGISTRUM
+        .object("raw_sapphire")
+        .item(RawGemItem.factory(SAPPHIRE_POLISHED))
+        .lang("Sapphire Topaz")
+        .defaultModel()
+        .tag(CrystalTags.Items.GEMS, CrystalTags.Items.SAPPHIRE)
         .register();
 
 
