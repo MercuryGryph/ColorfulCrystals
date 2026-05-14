@@ -2,6 +2,7 @@ package cn.mercury9.colorfulcrystals.item;
 
 import dev.anvilcraft.lib.v2.util.nullness.NonNullFunction;
 import dev.anvilcraft.lib.v2.util.nullness.NonNullSupplier;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -44,9 +45,13 @@ public class RawGemItem extends Item {
         return ItemUseAnimation.BOW;
     }
 
+    private boolean isTargetValidGrindStone(Level level, BlockPos pos) {
+        return level.getBlockState(pos).is(Blocks.GRINDSTONE);
+    }
+
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        if (!context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.GRINDSTONE)) {
+        if (!isTargetValidGrindStone(context.getLevel(), context.getClickedPos())) {
             return InteractionResult.FAIL;
         }
 
@@ -69,14 +74,13 @@ public class RawGemItem extends Item {
                     final var time = this.getUseDuration(itemStack, livingEntity) - ticksRemaining + 1;
                     if (time % 10 == 0) {
                         spawnDust(level, blockHitResult, player.getViewVector(0f));
-
-                        final var sound = SoundEvents.GRINDSTONE_USE;
-
-                        level.playSound(player, pos, sound, SoundSource.BLOCKS);
+                        playGrindSound(level, player, pos);
                     }
                 } else {
+                    playGrindSound(level, player, pos);
+                    if (level.isClientSide()) return;
                     itemStack.shrink(1);
-                    player.addItem(polished.get().getDefaultInstance());
+                    player.handleExtraItemsCreatedOnUse(polished.get().getDefaultInstance());
                 }
             } else {
                 livingEntity.releaseUsingItem();
@@ -109,6 +113,11 @@ public class RawGemItem extends Item {
                 delta.z * scale * level.getRandom().nextDouble()
             );
         }
+    }
+
+    private void playGrindSound(Level level, Player player, BlockPos pos) {
+        final var sound = SoundEvents.GRINDSTONE_USE;
+        level.playSound(player, pos, sound, SoundSource.BLOCKS);
     }
 
     private HitResult calcHit(Player player) {
