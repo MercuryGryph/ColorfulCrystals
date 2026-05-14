@@ -19,7 +19,6 @@ import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import org.jspecify.annotations.NonNull;
 
 @SuppressWarnings("unused")
 public class CrystalBlocks {
@@ -109,9 +108,10 @@ public class CrystalBlocks {
     clusterBlockState(
         Identifier baseModel
     ) {
+        //noinspection Convert2Lambda (have problem in dev server)
         return new NonNullSupplier<>() {
             @Override
-            public @NonNull NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator> get() {
+            public NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator> get() {
                 return (ctx, gen) -> gen
                     .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
                         .with(propertyDispatchWithFacingAndRandomRotation(baseModel))

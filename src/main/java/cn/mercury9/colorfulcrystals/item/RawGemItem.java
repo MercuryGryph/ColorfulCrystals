@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -39,6 +40,11 @@ public class RawGemItem extends Item {
     }
 
     @Override
+    public ItemUseAnimation getUseAnimation(ItemStack itemStack) {
+        return ItemUseAnimation.BOW;
+    }
+
+    @Override
     public InteractionResult useOn(UseOnContext context) {
         if (!context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.GRINDSTONE)) {
             return InteractionResult.FAIL;
@@ -58,9 +64,6 @@ public class RawGemItem extends Item {
             final var hitResult = this.calcHit(player);
             if (hitResult instanceof BlockHitResult blockHitResult && hitResult.getType() == HitResult.Type.BLOCK) {
                 final var pos = blockHitResult.getBlockPos();
-                final var state = level.getBlockState(pos);
-
-                System.out.println("ticksRemaining = " + ticksRemaining);
 
                 if (ticksRemaining > 1) {
                     final var time = this.getUseDuration(itemStack, livingEntity) - ticksRemaining + 1;
