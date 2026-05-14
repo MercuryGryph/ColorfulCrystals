@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "colorful_crystals:raw_ruby_block"
+          "name": "colorful_crystals:unpolished_ruby_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "colorful_crystals:blocks/raw_ruby_block"
+  "random_sequence": "colorful_crystals:blocks/unpolished_ruby_block"
 }

@@ -1,6 +1,5 @@
 package cn.mercury9.colorfulcrystals.item;
 
-import dev.anvilcraft.lib.v2.util.nullness.NonNullFunction;
 import dev.anvilcraft.lib.v2.util.nullness.NonNullSupplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,6 +7,7 @@ import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,21 +18,24 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class RawGemItem extends Item {
-    private final NonNullSupplier<Item> polished;
+public abstract class HoldToTransformItem extends Item {
+    protected final NonNullSupplier<Item> productSupplier;
 
-    public RawGemItem(NonNullSupplier<Item> polished, Properties properties) {
+    public HoldToTransformItem(NonNullSupplier<Item> productSupplier, Properties properties) {
         super(properties);
-        this.polished = polished;
+        this.productSupplier = productSupplier;
     }
 
-    public static NonNullFunction<Properties, RawGemItem> factory(NonNullSupplier<Item> polished) {
-        return (properties) -> new RawGemItem(polished, properties);
+    protected boolean canUseOnBlock(Level level, BlockPos pos) {
+        return false;
+    }
+
+    protected boolean canUseOnHand(Player player) {
+        return false;
     }
 
     @Override
@@ -45,13 +48,18 @@ public class RawGemItem extends Item {
         return ItemUseAnimation.BOW;
     }
 
-    private boolean isTargetValidGrindStone(Level level, BlockPos pos) {
-        return level.getBlockState(pos).is(Blocks.GRINDSTONE);
+    @Override
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        if (!canUseOnHand(player)) {
+            return InteractionResult.FAIL;
+        }
+        player.startUsingItem(hand);
+        return InteractionResult.CONSUME;
     }
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        if (!isTargetValidGrindStone(context.getLevel(), context.getClickedPos())) {
+        if (!canUseOnBlock(context.getLevel(), context.getClickedPos())) {
             return InteractionResult.FAIL;
         }
 
@@ -70,6 +78,10 @@ public class RawGemItem extends Item {
             if (hitResult instanceof BlockHitResult blockHitResult && hitResult.getType() == HitResult.Type.BLOCK) {
                 final var pos = blockHitResult.getBlockPos();
 
+                if (!canUseOnBlock(level, pos) && ! canUseOnHand(player)) {
+                    livingEntity.releaseUsingItem();
+                }
+
                 if (ticksRemaining > 1) {
                     final var time = this.getUseDuration(itemStack, livingEntity) - ticksRemaining + 1;
                     if (time % 10 == 0) {
@@ -80,7 +92,7 @@ public class RawGemItem extends Item {
                     playGrindSound(level, player, pos);
                     if (level.isClientSide()) return;
                     itemStack.shrink(1);
-                    player.handleExtraItemsCreatedOnUse(polished.get().getDefaultInstance());
+                    player.handleExtraItemsCreatedOnUse(productSupplier.get().getDefaultInstance());
                 }
             } else {
                 livingEntity.releaseUsingItem();
@@ -90,14 +102,14 @@ public class RawGemItem extends Item {
         }
     }
 
-    private void spawnDust(
+    protected void spawnDust(
         Level level,
         BlockHitResult hit,
         Vec3 viewVec
     ) {
         final var scale = 3.0;
         final var number = level.getRandom().nextInt(7, 12);
-        final var particle = new ItemParticleOption(ParticleTypes.ITEM, polished.get());
+        final var particle = getWorkingParticle();
         final var hitDirection = hit.getDirection();
         final var delta = DustDelta.fromDirection(viewVec, hitDirection);
         final var hitLoc = hit.getLocation();
@@ -115,16 +127,20 @@ public class RawGemItem extends Item {
         }
     }
 
-    private void playGrindSound(Level level, Player player, BlockPos pos) {
+    protected ItemParticleOption getWorkingParticle() {
+        return new ItemParticleOption(ParticleTypes.ITEM, productSupplier.get());
+    }
+
+    protected void playGrindSound(Level level, Player player, BlockPos pos) {
         final var sound = SoundEvents.GRINDSTONE_USE;
         level.playSound(player, pos, sound, SoundSource.BLOCKS);
     }
 
-    private HitResult calcHit(Player player) {
+    protected HitResult calcHit(Player player) {
         return ProjectileUtil.getHitResultOnViewVector(player, EntitySelector.CAN_BE_PICKED, player.blockInteractionRange());
     }
 
-    private record DustDelta(double x, double y, double z) {
+    protected record DustDelta(double x, double y, double z) {
         private static final double DELTA   = 1.0;
         private static final double OFFSET  = 0.1;
         private static final double Y       = 0.0;

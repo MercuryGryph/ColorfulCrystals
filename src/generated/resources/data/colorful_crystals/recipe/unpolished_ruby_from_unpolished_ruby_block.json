@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "building",
   "ingredients": [
-    "colorful_crystals:raw_ruby_block"
+    "colorful_crystals:unpolished_ruby_block"
   ],
   "result": {
     "count": 9,
-    "id": "colorful_crystals:raw_ruby"
+    "id": "colorful_crystals:unpolished_ruby"
   }
 }

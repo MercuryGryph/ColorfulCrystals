@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "colorful_crystals:raw_topaz_block"
+          "name": "colorful_crystals:unpolished_sapphire_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "colorful_crystals:blocks/raw_topaz_block"
+  "random_sequence": "colorful_crystals:blocks/unpolished_sapphire_block"
 }

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "X": "colorful_crystals:raw_ruby"
+    "X": "colorful_crystals:unpolished_sapphire"
   },
   "pattern": [
     "XXX",
@@ -10,6 +10,6 @@
     "XXX"
   ],
   "result": {
-    "id": "colorful_crystals:raw_ruby_block"
+    "id": "colorful_crystals:unpolished_sapphire_block"
   }
 }

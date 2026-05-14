@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "X": "colorful_crystals:raw_topaz"
+    "X": "colorful_crystals:unpolished_topaz"
   },
   "pattern": [
     "XXX",
@@ -10,6 +10,6 @@
     "XXX"
   ],
   "result": {
-    "id": "colorful_crystals:raw_topaz_block"
+    "id": "colorful_crystals:unpolished_topaz_block"
   }
 }

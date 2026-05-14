@@ -37,7 +37,7 @@ public class CrystalBlocks {
         .lang("Topaz Cluster")
         .loot((tables, block) -> {
             tables.dropSelf(block);
-            tables.createOreDrop(block, CrystalItems.TOPAZ_RAW.asItem());
+            tables.createOreDrop(block, CrystalItems.TOPAZ_UNPOLISHED.asItem());
         })
         .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.TOPAZ_CLUSTER)
         .item()
@@ -54,7 +54,7 @@ public class CrystalBlocks {
         .lang("Ruby Cluster")
         .loot((tables, block) -> {
             tables.dropSelf(block);
-            tables.createOreDrop(block, CrystalItems.RUBY_RAW.asItem());
+            tables.createOreDrop(block, CrystalItems.RUBY_UNPOLISHED.asItem());
         })
         .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.RUBY_CLUSTER)
         .item()
@@ -71,7 +71,7 @@ public class CrystalBlocks {
         .lang("Sapphire Cluster")
         .loot((tables, block) -> {
             tables.dropSelf(block);
-            tables.createOreDrop(block, CrystalItems.SAPPHIRE_RAW.asItem());
+            tables.createOreDrop(block, CrystalItems.SAPPHIRE_UNPOLISHED.asItem());
         })
         .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.RUBY_CLUSTER)
         .item()
@@ -80,18 +80,18 @@ public class CrystalBlocks {
         .build()
         .register();
 
-    public static final BlockEntry<Block> RAW_TOPAZ_BLOCK = ColorfulCrystals.REGISTRUM
-        .object("raw_topaz_block")
+    public static final BlockEntry<Block> UNPOLISHED_TOPAZ_BLOCK = ColorfulCrystals.REGISTRUM
+        .object("unpolished_topaz_block")
         .block(Block::new)
         .initialProperties(() -> Blocks.AMETHYST_BLOCK)
         .defaultBlockstate()
-        .lang("Raw Topaz Block")
+        .lang("Unpolished Topaz Block")
         .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.TOPAZ_BLOCK)
         .item()
-        .lang("Raw Topaz Block")
+        .lang("Unpolished Topaz Block")
         .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.TOPAZ_BLOCK)
         .recipe((ctx, prov) -> prov.storage(
-            () -> CrystalItems.TOPAZ_RAW,
+            () -> CrystalItems.TOPAZ_UNPOLISHED,
             RecipeCategory.BUILDING_BLOCKS,
             ctx::get
         ))
@@ -116,18 +116,18 @@ public class CrystalBlocks {
         .build()
         .register();
 
-    public static final BlockEntry<Block> RAW_RUBY_BLOCK = ColorfulCrystals.REGISTRUM
-        .object("raw_ruby_block")
+    public static final BlockEntry<Block> UNPOLISHED_RUBY_BLOCK = ColorfulCrystals.REGISTRUM
+        .object("unpolished_ruby_block")
         .block(Block::new)
         .initialProperties(() -> Blocks.AMETHYST_BLOCK)
         .defaultBlockstate()
-        .lang("Raw Ruby Block")
+        .lang("Unpolished Ruby Block")
         .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.RUBY_BLOCK)
         .item()
-        .lang("Raw Ruby Block")
+        .lang("Unpolished Ruby Block")
         .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.RUBY_BLOCK)
         .recipe((ctx, prov) -> prov.storage(
-            () -> CrystalItems.RUBY_RAW,
+            () -> CrystalItems.RUBY_UNPOLISHED,
             RecipeCategory.BUILDING_BLOCKS,
             ctx::get
         ))
@@ -152,18 +152,18 @@ public class CrystalBlocks {
         .build()
         .register();
 
-    public static final BlockEntry<Block> RAW_SAPPHIRE_BLOCK = ColorfulCrystals.REGISTRUM
-        .object("raw_sapphire_block")
+    public static final BlockEntry<Block> Unpolished_SAPPHIRE_BLOCK = ColorfulCrystals.REGISTRUM
+        .object("unpolished_sapphire_block")
         .block(Block::new)
         .initialProperties(() -> Blocks.AMETHYST_BLOCK)
         .defaultBlockstate()
-        .lang("Raw Sapphire Block")
+        .lang("Unpolished Sapphire Block")
         .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.SAPPHIRE_BLOCK)
         .item()
-        .lang("Raw Sapphire Block")
+        .lang("Unpolished Sapphire Block")
         .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.SAPPHIRE_BLOCK)
         .recipe((ctx, prov) -> prov.storage(
-            () -> CrystalItems.SAPPHIRE_RAW,
+            () -> CrystalItems.SAPPHIRE_UNPOLISHED,
             RecipeCategory.BUILDING_BLOCKS,
             ctx::get
         ))

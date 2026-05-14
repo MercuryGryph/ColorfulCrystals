@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "colorful_crystals:unpolished_topaz_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_unpolished_topaz": {
+      "conditions": {
+        "items": [
+          {
+            "items": "colorful_crystals:unpolished_topaz"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_unpolished_topaz"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "colorful_crystals:unpolished_topaz_block"
+    ]
+  }
+}
