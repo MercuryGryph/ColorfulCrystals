@@ -2,10 +2,13 @@ package cn.mercury9.colorfulcrystals;
 
 import cn.mercury9.colorfulcrystals.block.CrystalBudBlock;
 import com.mojang.math.Quadrant;
+import dev.anvilcraft.lib.v2.registrum.Registrum;
 import dev.anvilcraft.lib.v2.registrum.providers.DataGenContext;
 import dev.anvilcraft.lib.v2.registrum.providers.generators.RegistrumBlockModelGenerator;
 import dev.anvilcraft.lib.v2.registrum.util.entry.BlockEntry;
+import dev.anvilcraft.lib.v2.registrum.util.entry.ItemEntry;
 import dev.anvilcraft.lib.v2.util.nullness.NonNullBiConsumer;
+import dev.anvilcraft.lib.v2.util.nullness.NonNullFunction;
 import dev.anvilcraft.lib.v2.util.nullness.NonNullSupplier;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
@@ -15,10 +18,14 @@ import net.minecraft.client.renderer.block.dispatch.VariantMutator;
 import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.random.Weighted;
 import net.minecraft.util.random.WeightedList;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 @SuppressWarnings("unused")
@@ -29,56 +36,81 @@ public class CrystalBlocks {
 
     protected static void setupRegistration() {}
 
-    public static final BlockEntry<CrystalBudBlock> TOPAZ_CLUSTER = ColorfulCrystals.REGISTRUM
-        .object("topaz_cluster")
-        .block(CrystalBudBlock.factory(8f, 8f))
-        .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
-        .blockstate(clusterBlockState(identifier("topaz_cluster")))
-        .lang("Topaz Cluster")
-        .loot((tables, block) -> {
-            tables.dropSelf(block);
-            tables.createOreDrop(block, CrystalItems.TOPAZ_UNPOLISHED.asItem());
-        })
-        .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.TOPAZ_CLUSTER)
-        .item()
-        .lang("Topaz Cluster")
-        .tag(CrystalTags.Items.CLUSTERS, CrystalTags.Items.TOPAZ_CLUSTER)
-        .build()
-        .register();
+    //region cluster
 
-    public static final BlockEntry<CrystalBudBlock> RUBY_CLUSTER = ColorfulCrystals.REGISTRUM
-        .object("ruby_cluster")
-        .block(CrystalBudBlock.factory(6f, 8f))
-        .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
-        .blockstate(clusterBlockState(identifier("ruby_cluster")))
-        .lang("Ruby Cluster")
-        .loot((tables, block) -> {
-            tables.dropSelf(block);
-            tables.createOreDrop(block, CrystalItems.RUBY_UNPOLISHED.asItem());
-        })
-        .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.RUBY_CLUSTER)
-        .item()
-        .lang("Ruby Cluster")
-        .tag(CrystalTags.Items.CLUSTERS, CrystalTags.Items.RUBY_CLUSTER)
-        .build()
-        .register();
+    public static final BlockEntry<CrystalBudBlock> TOPAZ_CLUSTER = createGemCluster(
+        ColorfulCrystals.REGISTRUM,
+        CrystalBudBlock.factory(8f ,8f),
+        "topaz_cluster",
+        "Topaz Cluster",
+        identifier("topaz_cluster"),
+        CrystalItems.TOPAZ_UNPOLISHED,
+        new TagKey[]{CrystalTags.Blocks.TOPAZ_CLUSTER},
+        new TagKey[]{CrystalTags.Items.TOPAZ_CLUSTER}
+    );
 
-    public static final BlockEntry<CrystalBudBlock> SAPPHIRE_CLUSTER = ColorfulCrystals.REGISTRUM
-        .object("sapphire_cluster")
-        .block(CrystalBudBlock.factory(6f, 8f))
-        .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
-        .blockstate(clusterBlockState(identifier("sapphire_cluster")))
-        .lang("Sapphire Cluster")
-        .loot((tables, block) -> {
-            tables.dropSelf(block);
-            tables.createOreDrop(block, CrystalItems.SAPPHIRE_UNPOLISHED.asItem());
-        })
-        .tag(CrystalTags.Blocks.CLUSTERS, CrystalTags.Blocks.RUBY_CLUSTER)
-        .item()
-        .lang("Sapphire Cluster")
-        .tag(CrystalTags.Items.CLUSTERS, CrystalTags.Items.RUBY_CLUSTER)
-        .build()
-        .register();
+    public static final BlockEntry<CrystalBudBlock> RUBY_CLUSTER = createGemCluster(
+        ColorfulCrystals.REGISTRUM,
+        CrystalBudBlock.factory(6f, 8f),
+        "ruby_cluster",
+        "Ruby Cluster",
+        identifier("ruby_cluster"),
+        CrystalItems.RUBY_UNPOLISHED,
+        new TagKey[]{CrystalTags.Blocks.RUBY_CLUSTER},
+        new TagKey[]{CrystalTags.Items.RUBY_CLUSTER}
+    );
+
+    public static final BlockEntry<CrystalBudBlock> SAPPHIRE_CLUSTER = createGemCluster(
+        ColorfulCrystals.REGISTRUM,
+        CrystalBudBlock.factory(6f, 8f),
+        "sapphire_cluster",
+        "Sapphire Cluster",
+        identifier("sapphire_cluster"),
+        CrystalItems.SAPPHIRE_UNPOLISHED,
+        new TagKey[]{CrystalTags.Blocks.RUBY_CLUSTER},
+        new TagKey[]{CrystalTags.Items.RUBY_CLUSTER}
+    );
+
+    //endregion
+
+    //region gem ore
+
+    public static final BlockEntry<Block> TOPAZ_ORE = createGemOre(
+        ColorfulCrystals.REGISTRUM,
+        Block::new,
+        "topaz_ore",
+        "Topaz Ore",
+        identifier("topaz_ore"),
+        CrystalItems.TOPAZ_RAW,
+        new TagKey[]{CrystalTags.Blocks.TOPAZ_ORE},
+        new TagKey[]{CrystalTags.Items.TOPAZ_ORE}
+    );
+
+    public static final BlockEntry<Block> RUBY_ORE = createGemOre(
+        ColorfulCrystals.REGISTRUM,
+        Block::new,
+        "ruby_ore",
+        "Ruby Ore",
+        identifier("ruby_ore"),
+        CrystalItems.RUBY_RAW,
+        new TagKey[]{CrystalTags.Blocks.RUBY_ORE},
+        new TagKey[]{CrystalTags.Items.RUBY_ORE}
+    );
+
+    public static final BlockEntry<Block> SAPPHIRE_ORE = createGemOre(
+        ColorfulCrystals.REGISTRUM,
+        Block::new,
+        "sapphire_ore",
+        "Sapphire Ore",
+        identifier("sapphire_ore"),
+        CrystalItems.SAPPHIRE_RAW,
+        new TagKey[]{CrystalTags.Blocks.SAPPHIRE_ORE},
+        new TagKey[]{CrystalTags.Items.SAPPHIRE_ORE}
+    );
+
+    //endregion
+
+    //region gem block
 
     public static final BlockEntry<Block> UNPOLISHED_TOPAZ_BLOCK = ColorfulCrystals.REGISTRUM
         .object("unpolished_topaz_block")
@@ -143,7 +175,7 @@ public class CrystalBlocks {
         .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.RUBY_BLOCK)
         .item()
         .lang("Polished Ruby Block")
-        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.RUBY)
+        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.RUBY_BLOCK)
         .recipe((ctx, prov) -> prov.storage(
             () -> CrystalItems.RUBY_POLISHED,
             RecipeCategory.BUILDING_BLOCKS,
@@ -176,10 +208,10 @@ public class CrystalBlocks {
         .initialProperties(() -> Blocks.AMETHYST_BLOCK)
         .defaultBlockstate()
         .lang("Polished Sapphire Block")
-        .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.RUBY_BLOCK)
+        .tag(CrystalTags.Blocks.STORAGE, CrystalTags.Blocks.SAPPHIRE_BLOCK)
         .item()
         .lang("Polished Sapphire Block")
-        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.RUBY)
+        .tag(CrystalTags.Items.STORAGE, CrystalTags.Items.SAPPHIRE_BLOCK)
         .recipe((ctx, prov) -> prov.storage(
             () -> CrystalItems.SAPPHIRE_POLISHED,
             RecipeCategory.BUILDING_BLOCKS,
@@ -188,10 +220,72 @@ public class CrystalBlocks {
         .build()
         .register();
 
+    //endregion
+
     //region utils
     public static Identifier identifier(String id) {
         return ColorfulCrystals.identifier("block/" + id);
     }
+
+    public static <T extends Block> BlockEntry<T> createGemOre(
+        Registrum registrum,
+        NonNullFunction<BlockBehaviour.Properties, T> factory,
+        String id,
+        String lang,
+        Identifier texture,
+        ItemEntry<? extends Item> drop,
+        TagKey<Block>[] additionalTags,
+        TagKey<Item>[] additionalItemTags
+    ) {
+        return registrum
+            .object(id)
+            .block(factory)
+            .initialProperties(() -> Blocks.IRON_ORE)
+            .blockstate(gemOreState(texture))
+            .lang(lang)
+            .loot((tables, block) -> {
+                tables.add(block, tables.createOreDrop(block, drop.asItem()));
+            })
+            .tag(additionalTags)
+            .tag(CrystalTags.Blocks.GEM_ORE, BlockTags.MINEABLE_WITH_PICKAXE)
+            .item()
+            .lang(lang)
+            .tag(CrystalTags.Items.GEM_ORE)
+            .tag(additionalItemTags)
+            .build()
+            .register();
+    }
+
+    public static <T extends Block> BlockEntry<T> createGemCluster(
+        Registrum registrum,
+        NonNullFunction<BlockBehaviour.Properties, T> factory,
+        String id,
+        String lang,
+        Identifier model,
+        ItemEntry<? extends Item> drop,
+        TagKey<Block>[] additionalTags,
+        TagKey<Item>[] additionalItemTags
+    ) {
+        return registrum
+            .object(id)
+            .block(factory)
+            .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
+            .blockstate(clusterBlockState(model))
+            .lang(lang)
+            .loot((tables, block) -> {
+                tables.dropSelf(block);
+                tables.createOreDrop(block, drop.asItem());
+            })
+            .tag(CrystalTags.Blocks.CLUSTERS)
+            .tag(additionalTags)
+            .item()
+            .lang(lang)
+            .tag(CrystalTags.Items.CLUSTERS)
+            .tag(additionalItemTags)
+            .build()
+            .register();
+    }
+
 
     public static MultiVariant randomRotationMultiVariant(
         Identifier model,
@@ -215,6 +309,25 @@ public class CrystalBlocks {
             .select(Direction.SOUTH , randomRotationMultiVariant(model, VariantMutator.Z_ROT).with(VariantMutator.X_ROT.withValue(Quadrant.R270)))
             .select(Direction.EAST  , randomRotationMultiVariant(model, VariantMutator.Y_ROT).with(VariantMutator.Z_ROT.withValue(Quadrant.R90 )))
             .select(Direction.WEST  , randomRotationMultiVariant(model, VariantMutator.Y_ROT).with(VariantMutator.Z_ROT.withValue(Quadrant.R270)));
+    }
+
+    public static <T extends Block>
+    NonNullSupplier<NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator>>
+    gemOreState(
+        Identifier oreTexture
+    ) {
+        //noinspection Convert2Lambda (have problem in dev server)
+        return new NonNullSupplier<>() {
+            @Override
+            public NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator> get() {
+                return (ctx, gen) -> gen.create(
+                    ctx.get(),
+                    gen.withParent(CrystalModelTemplates.TEMPLATE_GEM_ORE)
+                        .texture(CrystalModelTemplates.GEM_ORE_GEM, oreTexture)
+                        .build(ctx.get())
+                );
+            }
+        };
     }
 
     public static <T extends Block>

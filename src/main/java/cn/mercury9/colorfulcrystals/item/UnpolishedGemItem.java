@@ -8,11 +8,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
 public class UnpolishedGemItem extends HoldToTransformItem {
-    public UnpolishedGemItem(NonNullSupplier<Item> polished, Properties properties) {
+    public UnpolishedGemItem(NonNullSupplier<? extends Item> polished, Properties properties) {
         super(polished, properties);
     }
 
-    public static NonNullFunction<Properties, UnpolishedGemItem> factory(NonNullSupplier<Item> polished) {
+    public static NonNullFunction<Properties, UnpolishedGemItem> factory(NonNullSupplier<? extends Item> polished) {
         return (properties) -> new UnpolishedGemItem(polished, properties);
     }
 

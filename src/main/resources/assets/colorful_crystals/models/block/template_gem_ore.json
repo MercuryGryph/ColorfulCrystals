@@ -1,0 +1,33 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"particle": "#gem",
+		"stone": "minecraft:block/stone"
+	},
+	"elements": [
+		{
+			"from": [-0.05, -0.05, -0.05],
+			"to": [16.05, 16.05, 16.05],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#gem"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#gem"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#gem"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#gem"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#gem"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#gem"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#stone"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#stone"}
+			}
+		}
+	]
+}

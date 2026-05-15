@@ -1,0 +1,6 @@
+{
+  "parent": "colorful_crystals:block/template_gem_ore",
+  "textures": {
+    "gem": "colorful_crystals:block/topaz_ore"
+  }
+}

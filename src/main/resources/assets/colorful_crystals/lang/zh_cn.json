@@ -3,6 +3,9 @@
 
   "block.colorful_crystals.topaz_cluster": "黄玉晶簇",
   "item.colorful_crystals.topaz_cluster": "黄玉晶簇",
+  "block.colorful_crystals.topaz_ore": "黄玉矿石",
+  "item.colorful_crystals.topaz_ore": "黄玉矿石",
+  "item.colorful_crystals.raw_topaz": "黄玉原石",
   "item.colorful_crystals.unpolished_topaz": "粗黄玉",
   "block.colorful_crystals.unpolished_topaz_block": "粗黄玉块",
   "item.colorful_crystals.unpolished_topaz_block": "粗黄玉块",
@@ -12,6 +15,9 @@
 
   "block.colorful_crystals.ruby_cluster": "红宝石晶簇",
   "item.colorful_crystals.ruby_cluster": "红宝石晶簇",
+  "block.colorful_crystals.ruby_ore": "红宝石矿石",
+  "item.colorful_crystals.ruby_ore": "红宝石矿石",
+  "item.colorful_crystals.raw_ruby": "红宝石原石",
   "item.colorful_crystals.unpolished_ruby": "粗红宝石",
   "block.colorful_crystals.unpolished_ruby_block": "粗红宝石块",
   "item.colorful_crystals.unpolished_ruby_block": "粗红宝石块",
@@ -21,6 +27,9 @@
 
   "block.colorful_crystals.sapphire_cluster": "蓝宝石晶簇",
   "item.colorful_crystals.sapphire_cluster": "蓝宝石晶簇",
+  "block.colorful_crystals.sapphire_ore": "蓝宝石矿石",
+  "item.colorful_crystals.sapphire_ore": "蓝宝石矿石",
+  "item.colorful_crystals.raw_sapphire": "蓝宝石原石",
   "item.colorful_crystals.unpolished_sapphire": "粗蓝宝石",
   "block.colorful_crystals.unpolished_sapphire_block": "粗蓝宝石块",
   "item.colorful_crystals.unpolished_sapphire_block": "粗蓝宝石块",

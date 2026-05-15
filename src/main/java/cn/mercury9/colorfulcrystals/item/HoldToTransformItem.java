@@ -23,9 +23,9 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 public abstract class HoldToTransformItem extends Item {
-    protected final NonNullSupplier<Item> productSupplier;
+    protected final NonNullSupplier<? extends Item> productSupplier;
 
-    public HoldToTransformItem(NonNullSupplier<Item> productSupplier, Properties properties) {
+    public HoldToTransformItem(NonNullSupplier<? extends Item> productSupplier, Properties properties) {
         super(properties);
         this.productSupplier = productSupplier;
     }
