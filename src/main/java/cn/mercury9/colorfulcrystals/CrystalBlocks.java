@@ -273,8 +273,7 @@ public class CrystalBlocks {
             .blockstate(clusterBlockState(model))
             .lang(lang)
             .loot((tables, block) -> {
-                tables.dropSelf(block);
-                tables.createOreDrop(block, drop.asItem());
+                tables.add(block, tables.createOreDrop(block, drop.asItem()));
             })
             .tag(CrystalTags.Blocks.CLUSTERS)
             .tag(additionalTags)
