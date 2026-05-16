@@ -15,6 +15,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import org.jspecify.annotations.NonNull;
 
 public class GemOreEntryBuilder<T extends Block> extends CrystalBlockEntryBuilder<T, GemOreEntryBuilder<T>> {
     public GemOreEntryBuilder(Registrum registrum) {
@@ -90,10 +91,9 @@ public class GemOreEntryBuilder<T extends Block> extends CrystalBlockEntryBuilde
     gemOreState(
         Identifier oreTexture
     ) {
-        //noinspection Convert2Lambda (have problem in dev server)
         return new NonNullSupplier<>() {
             @Override
-            public NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator> get() {
+            public @NonNull NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator> get() {
                 return (ctx, gen) -> gen.create(
                     ctx.get(),
                     gen.withParent(CrystalModelTemplates.TEMPLATE_GEM_ORE)
