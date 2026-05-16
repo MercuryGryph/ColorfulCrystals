@@ -1,7 +1,16 @@
 {
   "values": [
+    "colorful_crystals:topaz_cluster",
+    "colorful_crystals:ruby_cluster",
+    "colorful_crystals:sapphire_cluster",
     "colorful_crystals:topaz_ore",
     "colorful_crystals:ruby_ore",
-    "colorful_crystals:sapphire_ore"
+    "colorful_crystals:sapphire_ore",
+    "colorful_crystals:unpolished_topaz_block",
+    "colorful_crystals:polished_topaz_block",
+    "colorful_crystals:unpolished_ruby_block",
+    "colorful_crystals:polished_ruby_block",
+    "colorful_crystals:unpolished_sapphire_block",
+    "colorful_crystals:polished_sapphire_block"
   ]
 }
