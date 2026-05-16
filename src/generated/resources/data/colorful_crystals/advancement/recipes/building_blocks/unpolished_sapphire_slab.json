@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "colorful_crystals:unpolished_sapphire_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_unpolished_sapphire_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "colorful_crystals:unpolished_sapphire_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_unpolished_sapphire_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "colorful_crystals:unpolished_sapphire_slab"
+    ]
+  }
+}

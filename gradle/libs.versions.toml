@@ -6,7 +6,7 @@ lombok = "1.18.44"
 modDevGradle = "2.0.140"
 jsr305 = "3.0.2"
 jei = "29.5.0.26"
-anvillib = "2.0.0+snapshot.349"
+anvillib = "2.0.0+snapshot.364"
 
 [libraries]
 jsr305 = { group = "com.google.code.findbugs", name = "jsr305", version.ref = "jsr305" }

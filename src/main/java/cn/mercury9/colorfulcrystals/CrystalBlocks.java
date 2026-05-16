@@ -1,83 +1,210 @@
 package cn.mercury9.colorfulcrystals;
 
 import cn.mercury9.colorfulcrystals.block.CrystalBudBlock;
-import com.mojang.math.Quadrant;
+import cn.mercury9.colorfulcrystals.block.builder.ClusterEntryBuilder;
+import cn.mercury9.colorfulcrystals.block.builder.GemOreEntryBuilder;
+import cn.mercury9.colorfulcrystals.block.builder.GemSlabBuilder;
+import cn.mercury9.colorfulcrystals.block.builder.GemStorageBuilder;
 import dev.anvilcraft.lib.v2.registrum.util.entry.BlockEntry;
-import net.minecraft.client.data.models.BlockModelGenerators;
-import net.minecraft.client.data.models.MultiVariant;
-import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.renderer.block.dispatch.Variant;
-import net.minecraft.client.renderer.block.dispatch.VariantMutator;
-import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.random.Weighted;
-import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.SlabBlock;
 
+@SuppressWarnings("unused")
 public class CrystalBlocks {
     static {
-        ColorfulCrystals.REGISTRUM.defaultCreativeTab(CrystalCreativeTabs.TAB, "colorful_crystals");
+        ColorfulCrystals.REGISTRUM.defaultCreativeTab(CrystalCreativeTabs.TAB.getKey());
     }
 
-    public static void setupRegistration() {}
+    protected static void setupRegistration() {}
 
-    public static final BlockEntry<CrystalBudBlock> TOPAZ_CLUSTER = ColorfulCrystals.REGISTRUM
-        .object("topaz_cluster")
-        .block(CrystalBudBlock.constructWith(8f, 8f))
-        .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
-        .blockstate(() -> (ctx, gen) -> gen
-            .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
-                .with(propertyDispatchWithFacingAndRandomRotation(identifier("topaz_cluster")))
-            )
-        )
-        .lang("Topaz Cluster")
-        .item()
-        .build()
-        .register();
+    private static final ClusterEntryBuilder<CrystalBudBlock> CLUSTER_BUILDER = new ClusterEntryBuilder<>(ColorfulCrystals.REGISTRUM);
 
-    public static final BlockEntry<CrystalBudBlock> RUBY_CLUSTER = ColorfulCrystals.REGISTRUM
-        .object("ruby_cluster")
-        .block(CrystalBudBlock.constructWith(8f, 8f))
-        .initialProperties(() -> Blocks.AMETHYST_CLUSTER)
-        .lang("Ruby Cluster")
-        .blockstate(() -> (ctx, gen) -> gen
-            .blockStateOutput.accept(MultiVariantGenerator.dispatch(ctx.get())
-                .with(propertyDispatchWithFacingAndRandomRotation(identifier("ruby_cluster")))
-            )
-        )
-        .item()
-        .build()
-        .register();
+    private static final GemOreEntryBuilder<Block> GEM_ORE_BUILDER = new GemOreEntryBuilder<>(ColorfulCrystals.REGISTRUM);
+
+    private static final GemStorageBuilder<Block> GEM_STORAGE_BUILDER = new GemStorageBuilder<>(ColorfulCrystals.REGISTRUM);
+
+    private static final GemSlabBuilder<SlabBlock> GEM_SLAB_BUILDER = new GemSlabBuilder<>(ColorfulCrystals.REGISTRUM);
+
+    //region cluster
+
+    public static final BlockEntry<CrystalBudBlock> TOPAZ_CLUSTER = CLUSTER_BUILDER
+        .block(CrystalBudBlock.factory(8f, 8f))
+        .id("topaz_cluster")
+        .name("Topaz Cluster")
+        .model(identifier("topaz_cluster"))
+        .drop(CrystalItems.TOPAZ_UNPOLISHED)
+        .addBlockTag(CrystalTags.Blocks.TOPAZ_CLUSTER)
+        .addItemTag(CrystalTags.Items.TOPAZ_CLUSTER)
+        .build();
+
+    public static final BlockEntry<CrystalBudBlock> RUBY_CLUSTER = CLUSTER_BUILDER
+        .block(CrystalBudBlock.factory(6f, 8f))
+        .id("ruby_cluster")
+        .name("Ruby Cluster")
+        .model(identifier("ruby_cluster"))
+        .drop(CrystalItems.RUBY_UNPOLISHED)
+        .addBlockTag(CrystalTags.Blocks.RUBY_CLUSTER)
+        .addItemTag(CrystalTags.Items.RUBY_CLUSTER)
+        .build();
+
+    public static final BlockEntry<CrystalBudBlock> SAPPHIRE_CLUSTER = CLUSTER_BUILDER
+        .block(CrystalBudBlock.factory(6f, 8f))
+        .id("sapphire_cluster")
+        .name("Sapphire Cluster")
+        .model(identifier("sapphire_cluster"))
+        .drop(CrystalItems.SAPPHIRE_UNPOLISHED)
+        .addBlockTag(CrystalTags.Blocks.SAPPHIRE_CLUSTER)
+        .addItemTag(CrystalTags.Items.SAPPHIRE_CLUSTER)
+        .build();
+
+    //endregion
+
+    //region gem ore
+
+    public static final BlockEntry<Block> TOPAZ_ORE = GEM_ORE_BUILDER
+        .block(Block::new)
+        .id("topaz_ore")
+        .name("Topaz Ore")
+        .texture(identifier("topaz_ore"))
+        .drop(CrystalItems.TOPAZ_RAW)
+        .addBlockTag(CrystalTags.Blocks.TOPAZ_ORE)
+        .addItemTag(CrystalTags.Items.TOPAZ_ORE)
+        .build();
+
+    public static final BlockEntry<Block> RUBY_ORE = GEM_ORE_BUILDER
+        .block(Block::new)
+        .id("ruby_ore")
+        .name("Ruby Ore")
+        .texture(identifier("ruby_ore"))
+        .drop(CrystalItems.RUBY_RAW)
+        .addBlockTag(CrystalTags.Blocks.RUBY_ORE)
+        .addItemTag(CrystalTags.Items.RUBY_ORE)
+        .build();
+
+    public static final BlockEntry<Block> SAPPHIRE_ORE = GEM_ORE_BUILDER
+        .block(Block::new)
+        .id("sapphire_ore")
+        .name("Sapphire Ore")
+        .texture(identifier("sapphire_ore"))
+        .drop(CrystalItems.SAPPHIRE_RAW)
+        .addBlockTag(CrystalTags.Blocks.SAPPHIRE_ORE)
+        .addItemTag(CrystalTags.Items.SAPPHIRE_ORE)
+        .build();
+
+    //endregion
+
+    //region gem block
+
+    public static final BlockEntry<Block> UNPOLISHED_TOPAZ_BLOCK = GEM_STORAGE_BUILDER
+        .block(Block::new)
+        .id("unpolished_topaz_block")
+        .name("Unpolished Topaz Block")
+        .gem(CrystalItems.TOPAZ_UNPOLISHED)
+        .addBlockTag(CrystalTags.Blocks.TOPAZ_BLOCK)
+        .addItemTag(CrystalTags.Items.TOPAZ_BLOCK)
+        .build();
+
+    public static final BlockEntry<SlabBlock> UNPOLISHED_TOPAZ_SLAB = GEM_SLAB_BUILDER
+        .block(SlabBlock::new)
+        .id("unpolished_topaz_slab")
+        .name("Unpolished Topaz Slab")
+        .sourceBlock(UNPOLISHED_TOPAZ_BLOCK)
+        .texture(identifier("unpolished_topaz_block"))
+        .build();
+
+    public static final BlockEntry<Block> POLISHED_TOPAZ_BLOCK = GEM_STORAGE_BUILDER
+        .block(Block::new)
+        .id("polished_topaz_block")
+        .name("Polished Topaz Block")
+        .gem(CrystalItems.TOPAZ_POLISHED)
+        .addBlockTag(CrystalTags.Blocks.TOPAZ_BLOCK)
+        .addItemTag(CrystalTags.Items.TOPAZ_BLOCK)
+        .build();
+
+    public static final BlockEntry<SlabBlock> POLISHED_TOPAZ_SLAB = GEM_SLAB_BUILDER
+        .block(SlabBlock::new)
+        .id("polished_topaz_slab")
+        .name("Polished Topaz Slab")
+        .sourceBlock(POLISHED_TOPAZ_BLOCK)
+        .texture(identifier("polished_topaz_block"))
+        .build();
+
+    public static final BlockEntry<Block> UNPOLISHED_RUBY_BLOCK = GEM_STORAGE_BUILDER
+        .block(Block::new)
+        .id("unpolished_ruby_block")
+        .name("Unpolished Ruby Block")
+        .gem(CrystalItems.RUBY_UNPOLISHED)
+        .addBlockTag(CrystalTags.Blocks.RUBY_BLOCK)
+        .addItemTag(CrystalTags.Items.RUBY_BLOCK)
+        .build();
+
+    public static final BlockEntry<SlabBlock> UNPOLISHED_RUBY_SLAB = GEM_SLAB_BUILDER
+        .block(SlabBlock::new)
+        .id("unpolished_ruby_slab")
+        .name("Unpolished Ruby Slab")
+        .sourceBlock(UNPOLISHED_RUBY_BLOCK)
+        .texture(identifier("unpolished_ruby_block"))
+        .build();
+
+    public static final BlockEntry<Block> POLISHED_RUBY_BLOCK = GEM_STORAGE_BUILDER
+        .block(Block::new)
+        .id("polished_ruby_block")
+        .name("Polished Ruby Block")
+        .gem(CrystalItems.RUBY_POLISHED)
+        .addBlockTag(CrystalTags.Blocks.RUBY_BLOCK)
+        .addItemTag(CrystalTags.Items.RUBY_BLOCK)
+        .build();
+
+    public static final BlockEntry<SlabBlock> POLISHED_RUBY_SLAB = GEM_SLAB_BUILDER
+        .block(SlabBlock::new)
+        .id("polished_ruby_slab")
+        .name("Polished Ruby Slab")
+        .sourceBlock(POLISHED_RUBY_BLOCK)
+        .texture(identifier("polished_ruby_block"))
+        .build();
+
+    public static final BlockEntry<Block> UNPOLISHED_SAPPHIRE_BLOCK = GEM_STORAGE_BUILDER
+        .block(Block::new)
+        .id("unpolished_sapphire_block")
+        .name("Unpolished Sapphire Block")
+        .gem(CrystalItems.SAPPHIRE_UNPOLISHED)
+        .addBlockTag(CrystalTags.Blocks.SAPPHIRE_BLOCK)
+        .addItemTag(CrystalTags.Items.SAPPHIRE_BLOCK)
+        .build();
+
+    public static final BlockEntry<SlabBlock> UNPOLISHED_SAPPHIRE_SLAB = GEM_SLAB_BUILDER
+        .block(SlabBlock::new)
+        .id("unpolished_sapphire_slab")
+        .name("Unpolished Sapphire Slab")
+        .sourceBlock(UNPOLISHED_SAPPHIRE_BLOCK)
+        .texture(identifier("unpolished_sapphire_block"))
+        .build();
+
+    public static final BlockEntry<Block> POLISHED_SAPPHIRE_BLOCK = GEM_STORAGE_BUILDER
+        .block(Block::new)
+        .id("polished_sapphire_block")
+        .name("Polished Sapphire Block")
+        .gem(CrystalItems.SAPPHIRE_POLISHED)
+        .addBlockTag(CrystalTags.Blocks.SAPPHIRE_BLOCK)
+        .addItemTag(CrystalTags.Items.SAPPHIRE_BLOCK)
+        .build();
+
+    public static final BlockEntry<SlabBlock> POLISHED_SAPPHIRE_SLAB = GEM_SLAB_BUILDER
+        .block(SlabBlock::new)
+        .id("polished_sapphire_slab")
+        .name("Polished Sapphire Slab")
+        .sourceBlock(POLISHED_SAPPHIRE_BLOCK)
+        .texture(identifier("polished_sapphire_block"))
+        .build();
+
+    //endregion
+
+    //region utils
 
     public static Identifier identifier(String id) {
         return ColorfulCrystals.identifier("block/" + id);
     }
 
-    public static MultiVariant randomRotationMultiVariant(
-        Identifier model,
-        VariantMutator.VariantProperty<Quadrant> rot
-    ) {
-        return new MultiVariant(
-            WeightedList.of(
-                new Weighted<>(new Variant(model).with(rot.withValue(Quadrant.R0  )), 1),
-                new Weighted<>(new Variant(model).with(rot.withValue(Quadrant.R90 )), 1),
-                new Weighted<>(new Variant(model).with(rot.withValue(Quadrant.R180)), 1),
-                new Weighted<>(new Variant(model).with(rot.withValue(Quadrant.R270)), 1)
-            )
-        );
-    }
-
-    public static PropertyDispatch<MultiVariant> propertyDispatchWithFacingAndRandomRotation(Identifier model) {
-        return PropertyDispatch.initial(BlockStateProperties.FACING)
-            .select(Direction.UP    , randomRotationMultiVariant(model, VariantMutator.Y_ROT))
-            .select(Direction.DOWN  , randomRotationMultiVariant(model, VariantMutator.Y_ROT).with(VariantMutator.X_ROT.withValue(Quadrant.R180)))
-            .select(Direction.NORTH , randomRotationMultiVariant(model, VariantMutator.Z_ROT).with(VariantMutator.X_ROT.withValue(Quadrant.R90 )))
-            .select(Direction.SOUTH , randomRotationMultiVariant(model, VariantMutator.Z_ROT).with(VariantMutator.X_ROT.withValue(Quadrant.R270)))
-            .select(Direction.EAST  , randomRotationMultiVariant(model, VariantMutator.Y_ROT).with(VariantMutator.Z_ROT.withValue(Quadrant.R90 )))
-            .select(Direction.WEST  , randomRotationMultiVariant(model, VariantMutator.Y_ROT).with(VariantMutator.Z_ROT.withValue(Quadrant.R270)));
-    }
-
+    //endregion
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "colorful_crystals:block/unpolished_sapphire_block"
+  }
+}

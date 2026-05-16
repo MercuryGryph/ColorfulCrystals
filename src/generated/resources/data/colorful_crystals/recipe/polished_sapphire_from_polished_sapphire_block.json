@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "colorful_crystals:polished_sapphire_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "colorful_crystals:polished_sapphire"
+  }
+}
