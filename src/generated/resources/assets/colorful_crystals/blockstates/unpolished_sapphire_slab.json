@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "colorful_crystals:block/unpolished_sapphire_slab"
+    },
+    "type=double": {
+      "model": "colorful_crystals:block/unpolished_sapphire_block"
+    },
+    "type=top": {
+      "model": "colorful_crystals:block/unpolished_sapphire_slab_top"
+    }
+  }
+}

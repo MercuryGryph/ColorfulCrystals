@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "colorful_crystals:block/polished_ruby_slab"
+    },
+    "type=double": {
+      "model": "colorful_crystals:block/polished_ruby_block"
+    },
+    "type=top": {
+      "model": "colorful_crystals:block/polished_ruby_slab_top"
+    }
+  }
+}

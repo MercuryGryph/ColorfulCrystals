@@ -28,7 +28,7 @@ public class GemStorageBuilder<T extends Block> extends CrystalBlockEntryBuilder
 
     public GemStorageBuilder<T> gem(ItemEntry<? extends Item> gem) {
         this.gem = gem;
-        return this;
+        return self();
     }
 
     //endregion
@@ -43,10 +43,8 @@ public class GemStorageBuilder<T extends Block> extends CrystalBlockEntryBuilder
 
     @Override
     protected BlockEntry<T> actualBuild() {
-        TagKey<Block>[] blockTags = this.blockTag.toArray(new TagKey[1]);
-
-        TagKey<Item>[] itemTags = this.itemTag.toArray(new TagKey[1]);
-
+        TagKey<Block>[] blockTags = this.blockTag.toArray(new TagKey[0]);
+        TagKey<Item>[] itemTags = this.itemTag.toArray(new TagKey[0]);
         final var gem = this.gem;
 
         return registrum

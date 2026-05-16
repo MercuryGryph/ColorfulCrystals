@@ -61,10 +61,8 @@ public class GemOreEntryBuilder<T extends Block> extends CrystalBlockEntryBuilde
 
     @Override
     protected BlockEntry<T> actualBuild() {
-        TagKey<Block>[] blockTags = this.blockTag.toArray(new TagKey[1]);
-
-        TagKey<Item>[] itemTags = this.itemTag.toArray(new TagKey[1]);
-
+        TagKey<Block>[] blockTags = this.blockTag.toArray(new TagKey[0]);
+        TagKey<Item>[] itemTags = this.itemTag.toArray(new TagKey[0]);
         final var drop = this.drop;
 
         return registrum
