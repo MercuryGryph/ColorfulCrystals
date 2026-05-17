@@ -17,11 +17,11 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 import org.jspecify.annotations.NonNull;
 
-public class GemSlabBuilder<T extends SlabBlock> extends CrystalBlockEntryBuilder<T, GemSlabBuilder<T>> {
-    public GemSlabBuilder(Registrum registrum) {
+public class GemStairBuilder<T extends StairBlock> extends CrystalBlockEntryBuilder<T, GemStairBuilder<T>> {
+    public GemStairBuilder(Registrum registrum) {
         super(registrum);
     }
 
@@ -29,19 +29,19 @@ public class GemSlabBuilder<T extends SlabBlock> extends CrystalBlockEntryBuilde
     protected Identifier texture;
 
     @Override
-    public GemSlabBuilder<T> reset() {
+    public GemStairBuilder<T> reset() {
         this.sourceBlock = null;
         return super.reset();
     }
 
     //region setter
 
-    public GemSlabBuilder<T> sourceBlock(BlockEntry<? extends Block> sourceBlock) {
+    public GemStairBuilder<T> sourceBlock(BlockEntry<? extends Block> sourceBlock) {
         this.sourceBlock = sourceBlock;
         return self();
     }
 
-    public GemSlabBuilder<T> texture(Identifier texture) {
+    public GemStairBuilder<T> texture(Identifier texture) {
         this.texture = texture;
         return self();
     }
@@ -71,29 +71,24 @@ public class GemSlabBuilder<T extends SlabBlock> extends CrystalBlockEntryBuilde
             .lang(name)
             .tag(BlockTags.SLABS, BlockTags.MINEABLE_WITH_PICKAXE)
             .tag(blockTags)
-            .loot((tables, block) -> {
-                tables.add(block, tables.createSlabItemTable(block));
-            })
             .item()
             .lang(name)
             .tag(ItemTags.SLABS)
             .tag(itemTags)
             .recipe((ctx, prov) -> {
-               prov.slab(
-                    RecipeCategory.BUILDING_BLOCKS, ctx.get(), sourceBlock
-               );
-               prov.stonecutting(
-                   DataIngredient.items(sourceBlock.asItem()),
-                   RecipeCategory.BUILDING_BLOCKS,
-                   ctx,
-                   2
-               );
+                prov.stairs(
+                    DataIngredient.items(sourceBlock.asItem()),
+                    RecipeCategory.BUILDING_BLOCKS,
+                    ctx,
+                    null,
+                    true
+                );
             })
             .build()
             .register();
     }
 
-    public static <T extends SlabBlock>
+    public static <T extends StairBlock>
     NonNullSupplier<NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator>>
     gemSlabState(Identifier texture) {
         return new NonNullSupplier<>() {
@@ -101,28 +96,31 @@ public class GemSlabBuilder<T extends SlabBlock> extends CrystalBlockEntryBuilde
             @NonNull
             public NonNullBiConsumer<DataGenContext<Block, T>, RegistrumBlockModelGenerator> get() {
                 return (ctx, gen) -> {
-                    final var slab = ctx.get();
-                    final var bottomModel = gen.withParent(ModelTemplates.SLAB_BOTTOM)
+                    final var stair = ctx.get();
+                    final var stairInnerModel = gen.withParent(ModelTemplates.STAIRS_INNER)
                         .texture(TextureSlot.TOP, texture)
                         .texture(TextureSlot.BOTTOM, texture)
                         .texture(TextureSlot.SIDE, texture)
-                        .build(slab);
-                    final var topModel = gen.withParent(ModelTemplates.SLAB_TOP)
+                        .suffix("_inner")
+                        .build(ctx.get());
+                    final var stairOuterModel = gen.withParent(ModelTemplates.STAIRS_OUTER)
                         .texture(TextureSlot.TOP, texture)
                         .texture(TextureSlot.BOTTOM, texture)
                         .texture(TextureSlot.SIDE, texture)
-                        .suffix("_top")
-                        .build(slab);
-
-                    final var fullModel = ctx.getId().withPrefix("block/").withPath(path -> path.replace("_slab", "_block"));
-
-                    gen.blockStateOutput.accept(BlockModelGenerators.createSlab(
-                        slab,
-                        BlockModelGenerators.plainVariant(bottomModel),
-                        BlockModelGenerators.plainVariant(topModel),
-                        BlockModelGenerators.plainVariant(fullModel)
+                        .suffix("_outer")
+                        .build(ctx.get());
+                    final var stairModel = gen.withParent(ModelTemplates.STAIRS_STRAIGHT)
+                        .texture(TextureSlot.TOP, texture)
+                        .texture(TextureSlot.BOTTOM, texture)
+                        .texture(TextureSlot.SIDE, texture)
+                        .build(ctx.get());
+                    gen.blockStateOutput.accept(BlockModelGenerators.createStairs(
+                        stair,
+                        BlockModelGenerators.plainVariant(stairInnerModel),
+                        BlockModelGenerators.plainVariant(stairModel),
+                        BlockModelGenerators.plainVariant(stairOuterModel)
                     ));
-                    gen.registerSimpleItemModel(slab, bottomModel);
+                    gen.registerSimpleItemModel(stair, stairModel);
                 };
             }
         };

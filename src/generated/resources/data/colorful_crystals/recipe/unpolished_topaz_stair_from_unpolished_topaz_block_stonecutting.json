@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "colorful_crystals:unpolished_topaz_block",
+  "result": {
+    "id": "colorful_crystals:unpolished_topaz_stair"
+  }
+}
