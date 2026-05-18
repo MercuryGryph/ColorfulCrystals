@@ -4,11 +4,13 @@ import cn.mercury9.colorfulcrystals.block.CrystalBudBlock;
 import cn.mercury9.colorfulcrystals.block.builder.ClusterEntryBuilder;
 import cn.mercury9.colorfulcrystals.block.builder.GemOreEntryBuilder;
 import cn.mercury9.colorfulcrystals.block.builder.GemSlabBuilder;
+import cn.mercury9.colorfulcrystals.block.builder.GemStairBuilder;
 import cn.mercury9.colorfulcrystals.block.builder.GemStorageBuilder;
 import dev.anvilcraft.lib.v2.registrum.util.entry.BlockEntry;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 
 @SuppressWarnings("unused")
 public class CrystalBlocks {
@@ -19,12 +21,10 @@ public class CrystalBlocks {
     protected static void setupRegistration() {}
 
     private static final ClusterEntryBuilder<CrystalBudBlock> CLUSTER_BUILDER = new ClusterEntryBuilder<>(ColorfulCrystals.REGISTRUM);
-
     private static final GemOreEntryBuilder<Block> GEM_ORE_BUILDER = new GemOreEntryBuilder<>(ColorfulCrystals.REGISTRUM);
-
     private static final GemStorageBuilder<Block> GEM_STORAGE_BUILDER = new GemStorageBuilder<>(ColorfulCrystals.REGISTRUM);
-
     private static final GemSlabBuilder<SlabBlock> GEM_SLAB_BUILDER = new GemSlabBuilder<>(ColorfulCrystals.REGISTRUM);
+    private static final GemStairBuilder<StairBlock> GEM_STAIR_BUILDER = new GemStairBuilder<>(ColorfulCrystals.REGISTRUM);
 
     //region cluster
 
@@ -105,6 +105,14 @@ public class CrystalBlocks {
         .addItemTag(CrystalTags.Items.TOPAZ_BLOCK)
         .build();
 
+    public static final BlockEntry<StairBlock> UNPOLISHED_TOPAZ_STAIR = GEM_STAIR_BUILDER
+        .block(p -> new StairBlock(UNPOLISHED_TOPAZ_BLOCK.getDefaultState(), p))
+        .id("unpolished_topaz_stair")
+        .name("Unpolished Topaz Stair")
+        .texture(identifier("unpolished_topaz_block"))
+        .sourceBlock(UNPOLISHED_TOPAZ_BLOCK)
+        .build();
+
     public static final BlockEntry<SlabBlock> UNPOLISHED_TOPAZ_SLAB = GEM_SLAB_BUILDER
         .block(SlabBlock::new)
         .id("unpolished_topaz_slab")
@@ -120,6 +128,14 @@ public class CrystalBlocks {
         .gem(CrystalItems.TOPAZ_POLISHED)
         .addBlockTag(CrystalTags.Blocks.TOPAZ_BLOCK)
         .addItemTag(CrystalTags.Items.TOPAZ_BLOCK)
+        .build();
+
+    public static final BlockEntry<StairBlock> POLISHED_TOPAZ_STAIR = GEM_STAIR_BUILDER
+        .block(p -> new StairBlock(POLISHED_TOPAZ_BLOCK.getDefaultState(), p))
+        .id("polished_topaz_stair")
+        .name("Polished Topaz Stair")
+        .texture(identifier("polished_topaz_block"))
+        .sourceBlock(POLISHED_TOPAZ_BLOCK)
         .build();
 
     public static final BlockEntry<SlabBlock> POLISHED_TOPAZ_SLAB = GEM_SLAB_BUILDER
@@ -139,6 +155,14 @@ public class CrystalBlocks {
         .addItemTag(CrystalTags.Items.RUBY_BLOCK)
         .build();
 
+    public static final BlockEntry<StairBlock> UNPOLISHED_RUBY_STAIR = GEM_STAIR_BUILDER
+        .block(p -> new StairBlock(UNPOLISHED_RUBY_BLOCK.getDefaultState(), p))
+        .id("unpolished_ruby_stair")
+        .name("Unpolished Ruby Stair")
+        .texture(identifier("unpolished_ruby_block"))
+        .sourceBlock(UNPOLISHED_RUBY_BLOCK)
+        .build();
+
     public static final BlockEntry<SlabBlock> UNPOLISHED_RUBY_SLAB = GEM_SLAB_BUILDER
         .block(SlabBlock::new)
         .id("unpolished_ruby_slab")
@@ -154,6 +178,14 @@ public class CrystalBlocks {
         .gem(CrystalItems.RUBY_POLISHED)
         .addBlockTag(CrystalTags.Blocks.RUBY_BLOCK)
         .addItemTag(CrystalTags.Items.RUBY_BLOCK)
+        .build();
+
+    public static final BlockEntry<StairBlock> POLISHED_RUBY_STAIR = GEM_STAIR_BUILDER
+        .block(p -> new StairBlock(POLISHED_RUBY_BLOCK.getDefaultState(), p))
+        .id("polished_ruby_stair")
+        .name("Polished Ruby Stair")
+        .texture(identifier("polished_ruby_block"))
+        .sourceBlock(POLISHED_RUBY_BLOCK)
         .build();
 
     public static final BlockEntry<SlabBlock> POLISHED_RUBY_SLAB = GEM_SLAB_BUILDER
@@ -173,6 +205,14 @@ public class CrystalBlocks {
         .addItemTag(CrystalTags.Items.SAPPHIRE_BLOCK)
         .build();
 
+    public static final BlockEntry<StairBlock> UNPOLISHED_SAPPHIRE_STAIR = GEM_STAIR_BUILDER
+        .block(p -> new StairBlock(UNPOLISHED_SAPPHIRE_BLOCK.getDefaultState(), p))
+        .id("unpolished_sapphire_stair")
+        .name("Unpolished Sapphire Stair")
+        .texture(identifier("unpolished_sapphire_block"))
+        .sourceBlock(UNPOLISHED_SAPPHIRE_BLOCK)
+        .build();
+
     public static final BlockEntry<SlabBlock> UNPOLISHED_SAPPHIRE_SLAB = GEM_SLAB_BUILDER
         .block(SlabBlock::new)
         .id("unpolished_sapphire_slab")
@@ -188,6 +228,14 @@ public class CrystalBlocks {
         .gem(CrystalItems.SAPPHIRE_POLISHED)
         .addBlockTag(CrystalTags.Blocks.SAPPHIRE_BLOCK)
         .addItemTag(CrystalTags.Items.SAPPHIRE_BLOCK)
+        .build();
+
+    public static final BlockEntry<StairBlock> POLISHED_SAPPHIRE_STAIR = GEM_STAIR_BUILDER
+        .block(p -> new StairBlock(POLISHED_SAPPHIRE_BLOCK.getDefaultState(), p))
+        .id("polished_sapphire_stair")
+        .name("Polished Sapphire Stair")
+        .texture(identifier("polished_sapphire_block"))
+        .sourceBlock(POLISHED_SAPPHIRE_BLOCK)
         .build();
 
     public static final BlockEntry<SlabBlock> POLISHED_SAPPHIRE_SLAB = GEM_SLAB_BUILDER

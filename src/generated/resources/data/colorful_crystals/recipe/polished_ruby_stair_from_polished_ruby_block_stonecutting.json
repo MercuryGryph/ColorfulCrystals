@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "colorful_crystals:polished_ruby_block",
+  "result": {
+    "id": "colorful_crystals:polished_ruby_stair"
+  }
+}

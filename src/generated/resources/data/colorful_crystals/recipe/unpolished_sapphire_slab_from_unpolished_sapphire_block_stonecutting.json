@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "colorful_crystals:unpolished_sapphire_block",
+  "result": {
+    "count": 2,
+    "id": "colorful_crystals:unpolished_sapphire_slab"
+  }
+}

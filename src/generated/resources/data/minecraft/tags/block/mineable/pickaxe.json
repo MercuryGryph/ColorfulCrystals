@@ -7,16 +7,22 @@
     "colorful_crystals:ruby_ore",
     "colorful_crystals:sapphire_ore",
     "colorful_crystals:unpolished_topaz_block",
+    "colorful_crystals:unpolished_topaz_stair",
     "colorful_crystals:unpolished_topaz_slab",
     "colorful_crystals:polished_topaz_block",
+    "colorful_crystals:polished_topaz_stair",
     "colorful_crystals:polished_topaz_slab",
     "colorful_crystals:unpolished_ruby_block",
+    "colorful_crystals:unpolished_ruby_stair",
     "colorful_crystals:unpolished_ruby_slab",
     "colorful_crystals:polished_ruby_block",
+    "colorful_crystals:polished_ruby_stair",
     "colorful_crystals:polished_ruby_slab",
     "colorful_crystals:unpolished_sapphire_block",
+    "colorful_crystals:unpolished_sapphire_stair",
     "colorful_crystals:unpolished_sapphire_slab",
     "colorful_crystals:polished_sapphire_block",
+    "colorful_crystals:polished_sapphire_stair",
     "colorful_crystals:polished_sapphire_slab"
   ]
 }
